@@ -1,0 +1,17 @@
+footer {
+  display: flex;
+  justify-content: start;
+  background-color: lightgray;
+  justify-content: space-between; }
+
+#nav ul {
+  display: flex;
+  list-style-type: none; }
+  #nav ul li a {
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 20px; }
+
+#license {
+  font-size: 20px;
+  margin-top: 2px; }
