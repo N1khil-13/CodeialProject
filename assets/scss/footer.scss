@@ -17,6 +17,11 @@ footer {
             // justify-content: space-between;
             margin-right: 10px;
             font-size: 20px;
+            color: black;
+        }
+
+        li a:hover {
+            text-decoration: underline;
         }
     }
 }
