@@ -65,15 +65,17 @@ module.exports.create = function (req, res) {
 
 // Sign in and create a session 
 module.exports.createSession = function (req, res) {
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function (req, res) {
     req.logout(function (err) {
         if (err) {
-            console.log('Error in logging out');
-
+            console.log(err);
         }
-        return res.redirect('/'); oli
     });
-}
+
+    req.flash('success', 'Logged out Successfully');
+    return res.redirect('/');
+};
