@@ -11,6 +11,9 @@ module.exports.create = async function (req, res) {
         });
 
         if (req.xhr) {
+
+            post = await post.populate('user', 'name');
+
             return res.status(200).json({
                 data: {
                     post: post
@@ -24,6 +27,8 @@ module.exports.create = async function (req, res) {
     } catch (error) {
         // console.log("Error", error);
         req.flash('error', error);
+
+        console.log(error);
         return res.redirect('back');
 
     }
@@ -33,12 +38,14 @@ module.exports.create = async function (req, res) {
 }
 
 module.exports.destroy = async function (req, res) {
-    let post = await Post.findById(req.params.id);
+
     // if (err) {
     //     console.log('Error in deleting post');
     // }
 
     try {
+        let post = await Post.findById(req.params.id);
+
         if (post.user == req.user.id) {
             post.remove();
 
@@ -63,7 +70,7 @@ module.exports.destroy = async function (req, res) {
             return res.redirect('back');
         }
     } catch (err) {
-        req.flash('error', error);
+        req.flash('error', err);
         // console.log("Error", err);
         return res.redirect('back');
     }
