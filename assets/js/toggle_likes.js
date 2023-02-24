@@ -28,7 +28,7 @@ class ToggleLike {
 
 
                     $(self).attr('data-likes', likesCount);
-                    $(self).html(`${likesCount} Likes`);
+                    $(self).html(`${likesCount} &#9829`);
 
                 })
                 .fail(function (errData) {

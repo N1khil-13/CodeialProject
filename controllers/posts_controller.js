@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
-
+const Like = require('../models/like');
 
 
 module.exports.create = async function (req, res) {
@@ -39,7 +39,7 @@ module.exports.create = async function (req, res) {
 }
 
 module.exports.destroy = async function (req, res) {
-
+    // console.log('success');
     // if (err) {
     //     console.log('Error in deleting post');
     // }
@@ -47,12 +47,29 @@ module.exports.destroy = async function (req, res) {
     try {
         let post = await Post.findById(req.params.id);
 
+        console.log(post.user);
+        console.log(req.user.id);
+
         if (post.user == req.user.id) {
+
+            console.log('success');
+
+            await Like.deleteMany({ likeable: post, onModel: 'Post' });
+
+            console.log('success2');
+
+            await Like.deleteMany({ _id: { $in: post.comments } });
+
             post.remove();
+
+
 
             await Comment.deleteMany({ post: req.params.id });
 
+            // console.log('success2');
+
             if (req.xhr) {
+                console.log(req.params.id);
                 return res.status(200).json({
                     data: {
                         post_id: req.params.id,
@@ -72,7 +89,7 @@ module.exports.destroy = async function (req, res) {
         }
     } catch (err) {
         req.flash('error', err);
-        // console.log("Error", err);
+        console.log("Error", err);
         return res.redirect('back');
     }
 

@@ -38,11 +38,11 @@ module.exports.toggleLike = async function (req, res) {
         else {
             let newLike = await Like.create({
                 user: req.user._id,
-                likeable: req.query.id,
+                likeable: req.query.id,     
                 onModel: req.query.type
 
             });
-            // console.log(deleted);
+            // console.log(deleted); 
             // Like ki error thi
             likeable.likes.push(newLike._id);
             likeable.save();
@@ -53,7 +53,7 @@ module.exports.toggleLike = async function (req, res) {
                 deleted: deleted
             }
         })
-
+        
 
 
     } catch (err) {

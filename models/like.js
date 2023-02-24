@@ -19,7 +19,7 @@ const likeSchema = new mongoose.Schema({
     }
 
 }, {
-    timestamps: true
+    timestamps: true        
 });
 
 

@@ -76,12 +76,15 @@
     let deletePost = function (deleteLink) {
         $(deleteLink).click(function (e) {
             e.preventDefault();
-
+            console.log('testing');
             $.ajax({
                 type: 'get',
                 url: $(deleteLink).prop('href'),
                 success: function (data) {
-                    $(`#post-${data.data.post_id}`).remove();
+                    console.log(data);
+                    console.log($(`#post-${data.data.post_id}`))
+                    $(`#post_${data.data.post_id}`).remove();
+                    console.log('testing2');
                     new Noty({
                         theme: 'relax',
                         text: "Post Deleted",
