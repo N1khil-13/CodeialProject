@@ -1,0 +1,6 @@
+body {
+  margin: 0px;
+  /* text-align: center; */
+  background-color: whitesmoke; }
+  body #layout-main {
+    min-height: 100%; }
